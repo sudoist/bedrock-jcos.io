@@ -39,7 +39,7 @@ $php = empty($php) ? 'php' : $php;
     @if ($branch)
         git pull origin {{ $branch }}
         cd {{ $docker }}
-        docker-compose exec workspace bash
+        docker-compose exec -T workspace bash
         cd {{ $workspace }}
         composer update
     @endif
