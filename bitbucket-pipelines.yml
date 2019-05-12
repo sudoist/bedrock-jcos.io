@@ -38,4 +38,4 @@ pipelines:
           image:
             name: mcuyar/docker-envoy
           script:
-            - envoy run deployBranch --host=$HOST --user=$USER --php=php --code_directory=$PRODUCTION --docker=$DOCKER --workspace_user=$WORKSPACE_USER --workspace=$WORKSPACE_PRODUCTION --branch=production
+            - envoy run deployBranch --host=$HOST --user=$USER --php=php --code_directory=$PRODUCTION --docker=$DOCKER --workspace_user=$WORKSPACE_USER --workspace=$WORKSPACE_PRODUCTION --branch=master
