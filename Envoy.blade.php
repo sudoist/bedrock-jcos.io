@@ -28,17 +28,16 @@ $php = empty($php) ? 'php' : $php;
 @endstory
 
 @task('pipeline_task', ['on' => 'localhost'])
-    echo "* Running example command on the Bitbucket Pipeline server *"
+    echo "* Running deployBranch on the Bitbucket Pipeline server *"
     hostname
-    ls -la
+{{-- Run tests here later --}}
 @endtask
 
 @task('server_task', ['on' => 'web'])
-    echo "* Running example command on the remote server *"
-    hostname
-    ls -la
+    echo "* Running deployBranch on the remote server *"
     cd {{ $code_directory }}
     @if ($branch)
         git pull origin {{ $branch }}
+        composer update
     @endif
 @endtask

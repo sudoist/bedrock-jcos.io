@@ -14,24 +14,28 @@ pipelines:
   branches:
     development:
       - step:
-          name: Envoy Deploy to Latest
+          name: Envoy deploy to Latest
           image:
             name: mcuyar/docker-envoy
           script:
             - envoy run deployBranch --host=$HOST --user=$USER --php=php --code_directory=$LATEST --branch=development
-            -
-    stage:
+
       - step:
-          name: Envoy Deploy to Stage
+          name: Promote to Stage
+          deployment: staging # can be test, staging or production.
+          trigger: manual  # Uncomment to make this a manual deployment.
+          name: Envoy deploy to Stage
           image:
             name: mcuyar/docker-envoy
           script:
             - envoy run deployBranch --host=$HOST --user=$USER --php=php --code_directory=STAGE --branch=stage
-            -
-    production:
+
       - step:
-          name: Envoy Deploy to Production
+          name: Promote to Production
+          deployment: production # can be test, staging or production.
+          trigger: manual  # Uncomment to make this a manual deployment.
+          name: Envoy deploy to Production
           image:
             name: mcuyar/docker-envoy
           script:
-            - envoy run deployBranch --host=$HOST --user=$USER --php=php --code_directory=PRODUCTION --branch=production
+            - envoy run deployBranch --host=$HOST --user=$USER --php=php --code_directory=STAGE --branch=stage
