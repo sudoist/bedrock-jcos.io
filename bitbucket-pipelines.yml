@@ -18,7 +18,7 @@ pipelines:
           image:
             name: mcuyar/docker-envoy
           script:
-            - envoy run deployBranch --host=$HOST --user=$USER --php=php --code_directory=$LATEST --docker=$DOCKER --workspace=WORKSPACE_LATEST --branch=development
+            - envoy run deployBranch --host=$HOST --user=$USER --php=php --code_directory=$LATEST --docker=$DOCKER --workspace_user=$WORKSPACE_USER --workspace=$WORKSPACE_LATEST --branch=development
 
       - step:
           name: Promote to Stage
@@ -28,7 +28,7 @@ pipelines:
           image:
             name: mcuyar/docker-envoy
           script:
-            - envoy run deployBranch --host=$HOST --user=$USER --php=php --code_directory=STAGE --docker=$DOCKER --workspace=WORKSPACE_STAGE --branch=stage
+            - envoy run deployBranch --host=$HOST --user=$USER --php=php --code_directory=STAGE --docker=$DOCKER --workspace_user=$WORKSPACE_USER --workspace=$WORKSPACE_STAGE --branch=stage
 
       - step:
           name: Promote to Production
@@ -38,4 +38,4 @@ pipelines:
           image:
             name: mcuyar/docker-envoy
           script:
-            - envoy run deployBranch --host=$HOST --user=$USER --php=php --code_directory=STAGE --docker=$DOCKER --workspace=WORKSPACE_PRODUCTION --branch=stage
+            - envoy run deployBranch --host=$HOST --user=$USER --php=php --code_directory=STAGE --docker=$DOCKER --workspace_user=$WORKSPACE_USER --workspace=$WORKSPACE_PRODUCTION --branch=stage

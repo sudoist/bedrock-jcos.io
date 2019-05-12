@@ -41,6 +41,7 @@ $php = empty($php) ? 'php' : $php;
         cd {{ $docker }}
         docker-compose exec -T workspace bash
         cd {{ $workspace }}
+        su {{ workspace_user }}
         composer update
     @endif
 @endtask
