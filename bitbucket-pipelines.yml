@@ -1,0 +1,21 @@
+# Laravel pipelines https://confluence.atlassian.com/bitbucket/laravel-with-bitbucket-pipelines-913473967.html
+#
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+#image: php:7.1.1
+
+
+# Bitbucket Pipelines now includes the option to allocate additional resources.
+# By specifying the size of '2x', your pipeline will include double the resources (eg. 4GB memory → 8GB memory).
+#options:
+#  size: 2x
+
+pipelines:
+  branches:
+    master:
+      - step:
+          name: Envoy Run
+          image:
+            name: mcuyar/docker-envoy
+          script:
+            - envoy run deployLatest --host=$HOST --user=$USER --php=php --code_directory=$BITBUCKET_CLONE_DIR
