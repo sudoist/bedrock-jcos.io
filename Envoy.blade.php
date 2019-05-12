@@ -37,6 +37,7 @@ $php = empty($php) ? 'php' : $php;
     echo "* Running example command on the remote server *"
     hostname
     ls -la
+    {{ $code_directory }}
     cd {{ $code_directory }}
     @if ($branch)
         git pull origin {{ $branch }}

@@ -18,18 +18,20 @@ pipelines:
           image:
             name: mcuyar/docker-envoy
           script:
-            - envoy run deployBranch --host=$HOST --user=$USER --php=php --code_directory=$BITBUCKET_CLONE_DIR --branch=development
-
+            - envoy run deployBranch --host=$HOST --user=$USER --php=php --code_directory=$LATEST --branch=development
+            -
+    stage:
       - step:
           name: Envoy Deploy to Stage
           image:
             name: mcuyar/docker-envoy
           script:
-            - envoy run deployBranch --host=$HOST --user=$USER --php=php --code_directory=$BITBUCKET_CLONE_DIR --branch=stage
-
+            - envoy run deployBranch --host=$HOST --user=$USER --php=php --code_directory=STAGE --branch=stage
+            -
+    production:
       - step:
           name: Envoy Deploy to Production
           image:
             name: mcuyar/docker-envoy
           script:
-            - envoy run deployBranch --host=$HOST --user=$USER --php=php --code_directory=$BITBUCKET_CLONE_DIR --branch=production
+            - envoy run deployBranch --host=$HOST --user=$USER --php=php --code_directory=PRODUCTION --branch=production
