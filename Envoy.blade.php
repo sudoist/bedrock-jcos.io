@@ -31,7 +31,6 @@ $php = empty($php) ? 'php' : $php;
     echo "* Running example command on the Bitbucket Pipeline server *"
     hostname
     ls -la
-    ls -la {{ $code_directory }}
 @endtask
 
 @task('server_task', ['on' => 'web'])
