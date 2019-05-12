@@ -38,6 +38,7 @@ $php = empty($php) ? 'php' : $php;
     cd {{ $code_directory }}
     @if ($branch)
         git pull origin {{ $branch }}
+        cd {{ $docker }}
         docker-compose exec workspace bash
         cd {{ $workspace }}
         composer update
